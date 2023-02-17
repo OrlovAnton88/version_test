@@ -37,3 +37,7 @@ tasks.withType<Test> {
 tasks.getByName<Jar>("jar") {
 	enabled = false
 }
+
+versioning{
+	releases = mutableSetOf("main")
+}

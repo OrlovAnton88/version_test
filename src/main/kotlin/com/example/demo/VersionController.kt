@@ -8,7 +8,6 @@ class VersionController(private val versionConfig: VersionConfig) {
 
     @GetMapping("/version")
     fun versioon(): VersionConfig {
-
         return versionConfig
     }
 }

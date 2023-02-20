@@ -22,7 +22,6 @@ jobs:
         with:
           fetch-depth: '0'
       - name: Docker meta
-        if: github.ref == 'refs/heads/main'
         id: meta
         uses: docker/metadata-action@v4
         with:

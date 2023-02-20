@@ -12,9 +12,9 @@ env:
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
-#    permissions:
-#      contents: read
-#      packages: write
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Checkout
@@ -26,7 +26,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            name/app
+            images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=ref,event=branch
             type=ref,event=pr

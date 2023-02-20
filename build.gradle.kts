@@ -5,11 +5,16 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.0"
 	kotlin("jvm") version "1.7.22"
 	kotlin("plugin.spring") version "1.7.22"
-	id("net.nemerosa.versioning") version "3.0.0"
+//	id("me.qoomon.git-versioning") version "6.4.2"
+	id("com.palantir.git-version") version "1.0.0"
 }
 
+
+
 group = "com.example"
-version = versioning.info.display
+val gitVersion: groovy.lang.Closure<String> by extra
+version = gitVersion()
+
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
@@ -20,6 +25,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("org.springframework.boot:spring-boot-starter-web")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
@@ -38,6 +44,6 @@ tasks.getByName<Jar>("jar") {
 	enabled = false
 }
 
-versioning{
-	releases = mutableSetOf("main")
+tasks.processResources {
+	expand("version" to project.version)
 }

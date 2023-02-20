@@ -27,7 +27,7 @@ jobs:
         with:
           images:
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
+          tags:
             type=raw,value={{tag}}
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
